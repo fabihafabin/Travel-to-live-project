@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Bookings{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+ <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'bookings' %}" class="btn btn-primary">Bookings</a></li>
+   </ul>
+  </div>
+
+  <div class="col-sm-7 offset-sm-1">
+      {% for bp in bookings_placed%}
+   <div class="row shadow-sm mb-3">
+    <div class="col-sm-7">
+        <img src="{{bp.product.product_image.url}}" alt="" srcset="" class="img-fluid" height="150" width="150">
+    </div>
+    <div class="col-sm-7 fw-bold">
+        <p>Product: {{bp.product.title}}</p>
+        <p>Quantity: {{bp.quantity}}</p>
+        <p>Price: {{bp.total_cost}}</p>
+   </div>
+   <div class="col-sm-7 fw-bold">
+       <p>Booking Status: {{bp.status}}</p>
+       {% if bp.status == 'Confirmed' %}
+       <div class="progress">
+           <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+           <div>
+        {% endif %}
+
+        </div>
+        </div>
+    {% endfor %}  
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

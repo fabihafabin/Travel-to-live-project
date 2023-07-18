@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Popular Places{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+      <div class="list-group">
+        <a href="{% url 'popular' %}" class="list-group-item list-group-item-action" aria-current="true">Popular Places</a>
+      </div>
+    </div>
+    <div class="col-sm-8">
+    <div class="row">
+    {% for product in popular_attractions %}
+    <div class="col-sm-4 text-center mb-4">
+        <a href="{% url 'product-detail' product.id %}" class="btn">
+        <div class="item">
+              <img src="{{product.product_image.url}}" alt=""height="600" class="">
+              <div class="fw-bold">{{product.title}}</div>
+              <small class="fs-12">{{product.description}}
+              </small>
+        </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+ </div>
+ </div>
+{% endblock main-content %}
+
